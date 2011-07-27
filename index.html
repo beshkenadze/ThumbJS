@@ -2,9 +2,52 @@
 <html lang="ru-RU">
 <head>
 	<meta charset="UTF-8">
-	<title>ThumbJS</title>
+	<title>ThumbJS Demo</title>
+	<style type="text/css">
+	   #fileinput {
+	        position:absolute;
+	        top:80px;
+	        height:20px;
+	   }
+	   #dropzone {
+	       position:relative;
+	       width:200px;
+	       height:200px;
+	       border:1px solid #ccc;
+	   }
+	   #dropzone.enter {
+	       border:1px solid red;
+	   }
+	   #dropzone p {
+	       position:absolute;
+	       top:0px;
+	       font-size:40px;
+	       color:#ccc;
+	   }
+	</style>
 </head>
 <body>
-	
+    <h2>FileAPI & Canvas (FileAPI support browser (Firefox 3.6, Opera 11.50, Chrome 13) )</h2>
+    <div>
+        <label for="sizes">Size</label><input type="text" name="sizes" value="800,600,300,150,50" id="sizes">
+    </div>
+    <div id="dropzone">
+        <p>Drop or</p>
+        <input type="file" name="file" value="" id="fileinput" multiple="multiple">
+    </div>
+    <div id="previewzone">
+      
+    </div>
+	<script type="text/javascript" src="https://raw.github.com/beshkenadze/ThumbJS/master/thumbjs.js"></script>
+	<script type="text/javascript">
+	var sizes = ['800','600','300','150','50'];
+    window.onload = function(){
+      new ThumbJS(function(images) {
+		for (var i=0; i < images.length; i++) {
+			document.getElementById("previewzone").appendChild(images[i]);
+		};
+	  }).init(document.getElementById("fileinput"), document.getElementById("dropzone"), sizes);
+    }    
+	</script>
 </body>
 </html>
